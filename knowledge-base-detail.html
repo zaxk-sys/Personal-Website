@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Knowledge Base Detail - Zakariya Mohamed">
+    <title>Knowledge Base Detail | Zakariya Mohamed</title>
+    
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="assets/css/main.css">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">ZM</a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="projects.html">Projects</a></li>
+                <li><a href="knowledge-base.html" class="active">Knowledge Base</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><button class="theme-toggle" aria-label="Toggle theme">🌙</button></li>
+            </ul>
+            <button class="menu-toggle" aria-label="Toggle menu">☰</button>
+        </div>
+    </nav>
+
+    <!-- Cinematic Hero Section -->
+    <section class="kb-detail-hero">
+        <div class="kb-hero-background">
+            <!-- Animated Grid Background -->
+            <div class="kb-grid-overlay"></div>
+            <!-- Animated Particles -->
+            <div class="kb-hero-particles"></div>
+        </div>
+        <div class="kb-hero-content">
+            <div class="kb-hero-badge">Azure Infrastructure</div>
+            <h1 class="kb-hero-title">Azure Virtual Machines & Scale Sets</h1>
+            <p class="kb-hero-subtitle">Mastering high availability, auto-scaling, and cost optimization across multiple availability zones</p>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <section class="kb-detail-content">
+        <div class="kb-detail-container">
+            <!-- Main Article -->
+            <article class="kb-detail-article">
+                <div class="kb-article-meta">
+                    <span class="kb-tag">Azure</span>
+                    <span class="kb-tag">Infrastructure</span>
+                    <span class="kb-tag">Scalability</span>
+                    <span class="kb-date">Published: January 2025</span>
+                </div>
+
+                <div class="kb-article-body">
+                    <p class="kb-paragraph fade-in-up">
+                        Configuring Azure Virtual Machines and VM Scale Sets requires a deep understanding of cloud infrastructure 
+                        principles, cost optimization strategies, and high availability patterns. This comprehensive guide covers 
+                        everything you need to know to build resilient, scalable, and cost-effective solutions on Azure.
+                    </p>
+
+                    <h2 class="kb-section-heading fade-in-up">High Availability Architecture</h2>
+                    <p class="kb-paragraph fade-in-up">
+                        When designing for high availability, it's crucial to distribute your VMs across multiple availability zones. 
+                        Azure provides three availability zones per region, each with independent power, cooling, and networking. 
+                        By leveraging availability zones, you can achieve 99.99% uptime SLA for your applications.
+                    </p>
+
+                    <p class="kb-paragraph fade-in-up">
+                        VM Scale Sets automatically distribute instances across availability zones when configured with zone-redundant 
+                        placement. This ensures that even if an entire zone fails, your application continues running in the remaining zones. 
+                        The scale set automatically rebalances instances to maintain desired capacity.
+                    </p>
+
+                    <h2 class="kb-section-heading fade-in-up">Auto-Scaling Best Practices</h2>
+                    <p class="kb-paragraph fade-in-up">
+                        Azure VM Scale Sets support both scale-out and scale-in operations based on metrics like CPU utilization, 
+                        memory consumption, or custom application metrics. Configure scale-out rules to add instances when average 
+                        CPU exceeds 70% for 5 minutes, and scale-in rules to remove instances when CPU drops below 30% for 10 minutes.
+                    </p>
+
+                    <p class="kb-paragraph fade-in-up">
+                        Use predictive autoscaling to anticipate demand based on historical patterns. This feature analyzes your 
+                        workload patterns and proactively scales before traffic spikes occur, reducing latency and improving user experience.
+                    </p>
+
+                    <h2 class="kb-section-heading fade-in-up">Cost Optimization Strategies</h2>
+                    <p class="kb-paragraph fade-in-up">
+                        Leverage Azure Reserved Instances to save up to 72% compared to pay-as-you-go pricing for predictable workloads. 
+                        For variable workloads, use Spot VMs which can provide up to 90% cost savings, though they can be evicted 
+                        when Azure needs capacity.
+                    </p>
+
+                    <p class="kb-paragraph fade-in-up">
+                        Implement automatic shutdown schedules for non-production environments. Use Azure Automation or Logic Apps 
+                        to schedule VM shutdowns during off-hours, significantly reducing costs for dev and test environments.
+                    </p>
+
+                    <h2 class="kb-section-heading fade-in-up">Monitoring and Alerting</h2>
+                    <p class="kb-paragraph fade-in-up">
+                        Set up comprehensive monitoring using Azure Monitor to track VM performance, availability, and health metrics. 
+                        Configure alerts for critical thresholds like CPU, memory, disk I/O, and network utilization. Use Azure 
+                        Log Analytics to aggregate logs from all VMs for centralized analysis and troubleshooting.
+                    </p>
+
+                    <div class="kb-article-footer">
+                        <a href="knowledge-base.html" class="kb-back-link">← Back to Knowledge Base</a>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Sidebar -->
+            <aside class="kb-detail-sidebar">
+                <div class="kb-sidebar-section">
+                    <h3 class="kb-sidebar-title">Related Topics</h3>
+                    <ul class="kb-related-list">
+                        <li><a href="knowledge-base-detail.html?topic=azure-functions" class="kb-related-item">Azure Functions & Serverless</a></li>
+                        <li><a href="knowledge-base-detail.html?topic=azure-vnet" class="kb-related-item">Azure Virtual Network Design</a></li>
+                        <li><a href="knowledge-base-detail.html?topic=azure-blob" class="kb-related-item">Azure Blob Storage Optimization</a></li>
+                        <li><a href="knowledge-base-detail.html?topic=azure-arm" class="kb-related-item">ARM Templates Best Practices</a></li>
+                    </ul>
+                </div>
+
+                <div class="kb-sidebar-section">
+                    <h3 class="kb-sidebar-title">Popular Tags</h3>
+                    <div class="kb-tags-cloud">
+                        <span class="kb-tag-small">Azure</span>
+                        <span class="kb-tag-small">Infrastructure</span>
+                        <span class="kb-tag-small">Scalability</span>
+                        <span class="kb-tag-small">Cost Optimization</span>
+                        <span class="kb-tag-small">High Availability</span>
+                        <span class="kb-tag-small">Auto-Scaling</span>
+                        <span class="kb-tag-small">Monitoring</span>
+                        <span class="kb-tag-small">DevOps</span>
+                    </div>
+                </div>
+
+                <div class="kb-sidebar-section">
+                    <h3 class="kb-sidebar-title">Recent Posts</h3>
+                    <ul class="kb-related-list">
+                        <li><a href="#" class="kb-related-item">AI Infrastructure & GPU Management</a></li>
+                        <li><a href="#" class="kb-related-item">Container Security Scanning</a></li>
+                        <li><a href="#" class="kb-related-item">GitOps Workflow Implementation</a></li>
+                    </ul>
+                </div>
+            </aside>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer style="padding: var(--spacing-lg); text-align: center; border-top: 1px solid rgba(0, 245, 255, 0.1); margin-top: var(--spacing-xl);">
+        <p style="color: var(--text-muted);">
+            © 2025 Zakariya Mohamed. Built with passion for cloud infrastructure.
+        </p>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="assets/js/main.js"></script>
+    <script src="assets/js/animations.js"></script>
+</body>
+</html>
+

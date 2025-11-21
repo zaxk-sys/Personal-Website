@@ -494,6 +494,278 @@ document.addEventListener('DOMContentLoaded', function() {
   // CURSOR GLOW EFFECT - REMOVED
   // Now using unified cursor system in main.js
   // ============================================
+
+  // ============================================
+  // MOTION GRAPHICS - ENHANCED ANIMATIONS
+  // ============================================
+
+  // Split Text Animation - Character by character reveal
+  function splitTextAnimation(selector) {
+    const elements = document.querySelectorAll(selector);
+    elements.forEach(element => {
+      const text = element.textContent;
+      element.innerHTML = '';
+      element.classList.add('split-text');
+
+      [...text].forEach((char, index) => {
+        const span = document.createElement('span');
+        span.className = 'char';
+        span.textContent = char === ' ' ? '\u00A0' : char;
+        span.style.animationDelay = `${index * 0.03}s`;
+        element.appendChild(span);
+      });
+    });
+  }
+
+  // Word-by-word animation
+  function wordAnimation(selector) {
+    const elements = document.querySelectorAll(selector);
+    elements.forEach(element => {
+      const words = element.textContent.split(' ');
+      element.innerHTML = '';
+      element.classList.add('word-animate');
+
+      words.forEach((word, index) => {
+        const span = document.createElement('span');
+        span.className = 'word';
+        span.textContent = word;
+        span.style.animationDelay = `${index * 0.08}s`;
+        element.appendChild(span);
+
+        // Add space after word (except last)
+        if (index < words.length - 1) {
+          element.appendChild(document.createTextNode(' '));
+        }
+      });
+    });
+  }
+
+  // Counter Animation - Animate numbers from 0 to target
+  function animateCounters() {
+    const counters = document.querySelectorAll('[data-counter]');
+
+    counters.forEach(counter => {
+      const target = parseInt(counter.getAttribute('data-counter'));
+      const duration = parseInt(counter.getAttribute('data-duration')) || 2000;
+      const suffix = counter.getAttribute('data-suffix') || '';
+      const prefix = counter.getAttribute('data-prefix') || '';
+
+      let start = 0;
+      const increment = target / (duration / 16);
+
+      const updateCounter = () => {
+        start += increment;
+        if (start < target) {
+          counter.textContent = prefix + Math.floor(start) + suffix;
+          requestAnimationFrame(updateCounter);
+        } else {
+          counter.textContent = prefix + target + suffix;
+        }
+      };
+
+      // Start when in view
+      const counterObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            updateCounter();
+            counterObserver.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.5 });
+
+      counterObserver.observe(counter);
+    });
+  }
+
+  // Page Transition Effect
+  function initPageTransitions() {
+    // Create transition overlay
+    const overlay = document.createElement('div');
+    overlay.className = 'page-transition';
+    document.body.appendChild(overlay);
+
+    // Handle internal links
+    document.querySelectorAll('a[href]').forEach(link => {
+      const href = link.getAttribute('href');
+
+      // Skip external links, anchors, and downloads
+      if (!href ||
+          href.startsWith('#') ||
+          href.startsWith('http') ||
+          href.startsWith('mailto') ||
+          link.hasAttribute('download') ||
+          link.hasAttribute('target')) {
+        return;
+      }
+
+      link.addEventListener('click', (e) => {
+        e.preventDefault();
+
+        // Trigger exit animation
+        overlay.classList.add('active');
+
+        setTimeout(() => {
+          window.location.href = href;
+        }, 600);
+      });
+    });
+
+    // Entry animation on page load
+    window.addEventListener('load', () => {
+      overlay.classList.add('exit');
+      setTimeout(() => {
+        overlay.classList.remove('active', 'exit');
+      }, 600);
+    });
+  }
+
+  // Scroll Parallax Effect
+  function initParallax() {
+    const parallaxElements = document.querySelectorAll('.parallax-bg, [data-parallax]');
+
+    if (parallaxElements.length === 0) return;
+
+    function updateParallax() {
+      parallaxElements.forEach(element => {
+        const speed = parseFloat(element.getAttribute('data-parallax')) || 0.5;
+        const rect = element.getBoundingClientRect();
+        const scrolled = window.pageYOffset;
+
+        if (rect.top < window.innerHeight && rect.bottom > 0) {
+          const yPos = -(scrolled * speed);
+          element.style.transform = `translateY(${yPos}px)`;
+        }
+      });
+    }
+
+    window.addEventListener('scroll', updateParallax, { passive: true });
+    updateParallax();
+  }
+
+  // Staggered Card Entrance
+  function initStaggeredEntrance() {
+    const cards = document.querySelectorAll('.bento-card, .kb-item');
+
+    cards.forEach((card, index) => {
+      card.classList.add('stagger-enter');
+      card.style.animationDelay = `${index * 0.1}s`;
+    });
+
+    const staggerObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          staggerObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '-50px' });
+
+    cards.forEach(card => staggerObserver.observe(card));
+  }
+
+  // Magnetic Button Effect
+  function initMagneticButtons() {
+    const buttons = document.querySelectorAll('.social-btn, .submit-btn, .filter-btn');
+
+    buttons.forEach(btn => {
+      btn.classList.add('magnetic-btn');
+
+      btn.addEventListener('mousemove', (e) => {
+        const rect = btn.getBoundingClientRect();
+        const x = e.clientX - rect.left - rect.width / 2;
+        const y = e.clientY - rect.top - rect.height / 2;
+
+        btn.style.transform = `translate(${x * 0.2}px, ${y * 0.2}px)`;
+      });
+
+      btn.addEventListener('mouseleave', () => {
+        btn.style.transform = 'translate(0, 0)';
+      });
+    });
+  }
+
+  // Scroll-based transforms
+  function initScrollTransforms() {
+    const rotateElements = document.querySelectorAll('.rotate-on-scroll');
+    const scaleElements = document.querySelectorAll('.scale-on-scroll');
+    const blurElements = document.querySelectorAll('.blur-on-scroll');
+
+    function updateTransforms() {
+      const scrolled = window.pageYOffset;
+      const maxScroll = document.body.scrollHeight - window.innerHeight;
+      const scrollPercent = scrolled / maxScroll;
+
+      rotateElements.forEach(el => {
+        el.style.transform = `rotate(${scrollPercent * 360}deg)`;
+      });
+
+      scaleElements.forEach(el => {
+        const scale = 1 + (scrollPercent * 0.5);
+        el.style.transform = `scale(${scale})`;
+      });
+
+      blurElements.forEach(el => {
+        const blur = scrollPercent * 10;
+        el.style.filter = `blur(${blur}px)`;
+      });
+    }
+
+    window.addEventListener('scroll', updateTransforms, { passive: true });
+  }
+
+  // Hero text animation on load
+  function initHeroAnimation() {
+    const heroTitle = document.querySelector('.card-profile h1');
+    const heroDescription = document.querySelector('.card-profile .text-muted');
+
+    if (heroTitle) {
+      // Animate hero title with character reveal
+      setTimeout(() => {
+        splitTextAnimation('.card-profile h1');
+      }, 300);
+    }
+
+    if (heroDescription) {
+      // Animate description with word reveal
+      setTimeout(() => {
+        wordAnimation('.card-profile .text-muted');
+      }, 800);
+    }
+  }
+
+  // Tech stack stagger animation
+  function initTechStackAnimation() {
+    const techItems = document.querySelectorAll('.tech-item');
+
+    techItems.forEach((item, index) => {
+      item.style.opacity = '0';
+      item.style.transform = 'translateY(20px) scale(0.8)';
+
+      setTimeout(() => {
+        item.style.transition = 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)';
+        item.style.opacity = '1';
+        item.style.transform = 'translateY(0) scale(1)';
+      }, 1000 + (index * 100));
+    });
+  }
+
+  // Initialize all motion graphics
+  function initMotionGraphics() {
+    // Delay to ensure DOM is ready
+    setTimeout(() => {
+      initHeroAnimation();
+      initTechStackAnimation();
+      animateCounters();
+      initPageTransitions();
+      initParallax();
+      initStaggeredEntrance();
+      initMagneticButtons();
+      initScrollTransforms();
+    }, 100);
+  }
+
+  // Run on DOM ready
+  initMotionGraphics();
   
   
   // ============================================

@@ -2349,6 +2349,323 @@ h1 { animation-delay: 0.2s; }
 h2 { animation-delay: 0.3s; }
 h3 { animation-delay: 0.4s; }
 
+/* ============================================
+   MOTION GRAPHICS - ENHANCED ANIMATIONS
+   ============================================ */
+
+/* Split Text Animation */
+.split-text {
+    display: inline-block;
+    overflow: hidden;
+}
+
+.split-text .char {
+    display: inline-block;
+    opacity: 0;
+    transform: translateY(100%);
+    animation: charReveal 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+@keyframes charReveal {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Word-by-word animation */
+.word-animate .word {
+    display: inline-block;
+    opacity: 0;
+    transform: translateY(20px) rotateX(-90deg);
+    animation: wordReveal 0.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+    transform-origin: center bottom;
+}
+
+@keyframes wordReveal {
+    to {
+        opacity: 1;
+        transform: translateY(0) rotateX(0deg);
+    }
+}
+
+/* Page Transition Overlay */
+.page-transition {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--bg-page);
+    z-index: 100000;
+    pointer-events: none;
+    transform: translateY(100%);
+}
+
+.page-transition.active {
+    animation: pageSlideUp 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+.page-transition.exit {
+    transform: translateY(0);
+    animation: pageSlideDown 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+@keyframes pageSlideUp {
+    from { transform: translateY(100%); }
+    to { transform: translateY(0); }
+}
+
+@keyframes pageSlideDown {
+    from { transform: translateY(0); }
+    to { transform: translateY(-100%); }
+}
+
+/* Counter Animation */
+.counter-animate {
+    display: inline-block;
+    font-variant-numeric: tabular-nums;
+}
+
+/* Staggered Card Entrance */
+.stagger-enter {
+    opacity: 0;
+    transform: translateY(40px) scale(0.95);
+}
+
+.stagger-enter.visible {
+    animation: staggerIn 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+@keyframes staggerIn {
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+/* Enhanced Button Hover */
+.btn-hover-effect {
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-hover-effect::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    transition: width 0.4s ease, height 0.4s ease;
+}
+
+.btn-hover-effect:hover::before {
+    width: 300%;
+    height: 300%;
+}
+
+/* Scroll Parallax Container */
+.parallax-container {
+    overflow: hidden;
+    position: relative;
+}
+
+.parallax-bg {
+    position: absolute;
+    top: -20%;
+    left: 0;
+    width: 100%;
+    height: 140%;
+    will-change: transform;
+}
+
+/* Floating Elements */
+.float-element {
+    animation: floatUpDown 6s ease-in-out infinite;
+}
+
+@keyframes floatUpDown {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-20px); }
+}
+
+/* Rotate on Scroll */
+.rotate-on-scroll {
+    transition: transform 0.1s ease-out;
+    will-change: transform;
+}
+
+/* Scale on Scroll */
+.scale-on-scroll {
+    transition: transform 0.3s ease-out;
+    will-change: transform;
+}
+
+/* Blur on Scroll */
+.blur-on-scroll {
+    transition: filter 0.3s ease-out;
+    will-change: filter;
+}
+
+/* Slide In Animations */
+@keyframes slideInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes slideInRight {
+    from {
+        opacity: 0;
+        transform: translateX(50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.slide-in-left {
+    animation: slideInLeft 0.6s var(--ease) forwards;
+}
+
+.slide-in-right {
+    animation: slideInRight 0.6s var(--ease) forwards;
+}
+
+/* Bounce In */
+@keyframes bounceIn {
+    0% {
+        opacity: 0;
+        transform: scale(0.3);
+    }
+    50% {
+        transform: scale(1.05);
+    }
+    70% {
+        transform: scale(0.9);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.bounce-in {
+    animation: bounceIn 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
+}
+
+/* Glow Pulse */
+@keyframes glowPulse {
+    0%, 100% {
+        box-shadow: 0 0 20px var(--accent-glow);
+    }
+    50% {
+        box-shadow: 0 0 40px var(--accent-glow), 0 0 60px var(--accent-glow);
+    }
+}
+
+.glow-pulse {
+    animation: glowPulse 2s ease-in-out infinite;
+}
+
+/* Morphing Border */
+@keyframes morphBorder {
+    0%, 100% {
+        border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+    }
+    50% {
+        border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%;
+    }
+}
+
+.morph-border {
+    animation: morphBorder 8s ease-in-out infinite;
+}
+
+/* Typewriter Effect */
+.typewriter {
+    overflow: hidden;
+    border-right: 2px solid var(--accent);
+    white-space: nowrap;
+    animation: typing 3.5s steps(40, end), blinkCaret 0.75s step-end infinite;
+}
+
+@keyframes typing {
+    from { width: 0; }
+    to { width: 100%; }
+}
+
+@keyframes blinkCaret {
+    from, to { border-color: transparent; }
+    50% { border-color: var(--accent); }
+}
+
+/* Magnetic Button Effect */
+.magnetic-btn {
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Reveal Mask */
+.reveal-mask {
+    position: relative;
+    overflow: hidden;
+}
+
+.reveal-mask::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--bg-card);
+    transform: translateX(0);
+    animation: revealMask 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+@keyframes revealMask {
+    to {
+        transform: translateX(100%);
+    }
+}
+
+/* Gradient Text Animation */
+.gradient-text-animate {
+    background: linear-gradient(90deg, var(--accent), #8B5CF6, var(--accent));
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: gradientFlow 3s linear infinite;
+}
+
+@keyframes gradientFlow {
+    to {
+        background-position: 200% center;
+    }
+}
+
+/* Prefers Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
 /* Shimmer effect on hover */
 @keyframes shimmer {
     0% {

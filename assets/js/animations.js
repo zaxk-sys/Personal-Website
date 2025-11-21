@@ -491,53 +491,9 @@ document.addEventListener('DOMContentLoaded', function() {
   }, { passive: true });
   
   // ============================================
-  // PERFECT CURSOR GLOW EFFECT (Desktop Only)
-  // Perfectly aligned, smooth, minimal
+  // CURSOR GLOW EFFECT - REMOVED
+  // Now using unified cursor system in main.js
   // ============================================
-  let cursorGlow = document.querySelector('.cursor-glow');
-  if (!cursorGlow && window.innerWidth > 768) {
-    cursorGlow = document.createElement('div');
-    cursorGlow.className = 'cursor-glow';
-    cursorGlow.style.cssText = `
-      position: fixed;
-      width: 12px;
-      height: 12px;
-      border-radius: 50%;
-      background: radial-gradient(circle, rgba(0, 245, 255, 0.5) 0%, transparent 70%);
-      pointer-events: none;
-      z-index: 9999;
-      transform: translate(-50%, -50%);
-      transition: width 0.15s ease-out, height 0.15s ease-out, transform 0.15s ease-out;
-      display: block;
-      mix-blend-mode: screen;
-      will-change: transform;
-      left: 0;
-      top: 0;
-    `;
-    document.body.appendChild(cursorGlow);
-    
-    // Perfect cursor alignment - direct tracking with minimal lag
-    document.addEventListener('mousemove', (e) => {
-      cursorGlow.style.left = e.clientX + 'px';
-      cursorGlow.style.top = e.clientY + 'px';
-    }, { passive: true });
-    
-    // Subtle scale-up on hover over clickable elements
-    const interactiveElements = document.querySelectorAll('a, button, .project-card, .kb-item, .btn, .expertise-card');
-    interactiveElements.forEach(el => {
-      el.addEventListener('mouseenter', () => {
-        cursorGlow.style.width = '24px';
-        cursorGlow.style.height = '24px';
-        cursorGlow.style.background = 'radial-gradient(circle, rgba(0, 245, 255, 0.7) 0%, transparent 70%)';
-      });
-      
-      el.addEventListener('mouseleave', () => {
-        cursorGlow.style.width = '12px';
-        cursorGlow.style.height = '12px';
-        cursorGlow.style.background = 'radial-gradient(circle, rgba(0, 245, 255, 0.5) 0%, transparent 70%)';
-      });
-    });
-  }
   
   
   // ============================================

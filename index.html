@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Zakariya Mohamed - Cloud Infrastructure Engineer">
+    <title>Zakariya Mohamed | Cloud Engineer</title>
+    <link rel="stylesheet" href="assets/css/main.css">
+    
+    <!-- Smooth Scroll -->
+    <script src="https://unpkg.com/lenis@1.0.45/dist/lenis.min.js"></script>
+</head>
+<body>
+    <div class="noise"></div>
+
+    <nav class="nav">
+        <a href="#home" class="nav-logo">ZM</a>
+        <ul class="nav-links">
+            <li><a href="#home" class="nav-link">Home</a></li>
+            <li><a href="#projects" class="nav-link">Projects</a></li>
+            <li><a href="#contact" class="nav-link">Contact</a></li>
+            </ul>
+
+        <!-- Liquid Glass Toggle -->
+        <div class="theme-toggle-container">
+            <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+                <div class="toggle-track">
+                    <div class="toggle-slider">
+                        <div class="toggle-icon">
+                            <!-- User icon for day mode -->
+                            <svg class="icon-user" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                                <circle cx="12" cy="7" r="4"></circle>
+                            </svg>
+                            <!-- Moon icon for night mode -->
+                            <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                            </svg>
+                        </div>
+                    </div>
+                    <span class="toggle-label">Work</span>
+                </div>
+            </button>
+        </div>
+    </nav>
+
+    <main class="main-container" id="home">
+        
+        <!-- 1. Profile Card (Big Hero) -->
+        <div class="bento-card col-span-2 row-span-2 card-profile">
+            <div class="profile-header">
+                <div class="avatar">ZM</div>
+                <div class="role-badge">
+                    <span class="status-dot"></span>
+                    Open to Work
+                </div>
+            </div>
+            <div>
+                <h1>Zakariya Mohamed</h1>
+                <p class="text-muted">Cloud Infrastructure Engineer specializing in Azure, Kubernetes, and AI Security. Building scalable, resilient systems for the future.</p>
+                </div>
+            <div class="social-grid" style="margin-top: 1rem;">
+                <a href="assets/resume.pdf" class="social-btn" style="background: var(--text-primary); color: var(--bg-page);">Download CV</a>
+                <a href="mailto:itszakariya0@gmail.com" class="social-btn">Email Me</a>
+            </div>
+        </div>
+
+        <!-- 2. Location / Time -->
+        <div class="bento-card card-location">
+            <!-- Placeholder gradient instead of map for now -->
+            <div style="position: absolute; inset:0; background: radial-gradient(circle at center, #262626 0%, #171717 100%); opacity: 0.5;"></div>
+            <div class="location-overlay">
+                <h3>Based in UK</h3>
+                <p class="text-sm mono" id="local-time">Loading time...</p>
+            </div>
+        </div>
+
+        <!-- 3. Socials (Small) -->
+        <div class="bento-card">
+            <h3>Connect</h3>
+            <div style="display: flex; flex-direction: column; gap: 0.5rem; margin-top: auto;">
+                <a href="https://linkedin.com" target="_blank" class="project-item">
+                    <span>LinkedIn</span>
+                    <svg class="arrow-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg>
+                </a>
+                <a href="https://github.com" target="_blank" class="project-item">
+                    <span>GitHub</span>
+                    <svg class="arrow-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg>
+                </a>
+            </div>
+                </div>
+
+        <!-- 4. Tech Stack (Wide) -->
+        <div class="bento-card col-span-2">
+            <h3>Core Stack</h3>
+            <div class="tech-grid">
+                <div class="tech-item">Azure</div>
+                <div class="tech-item">Kubernetes</div>
+                <div class="tech-item">Terraform</div>
+                <div class="tech-item">Docker</div>
+                <div class="tech-item">Python</div>
+                <div class="tech-item">CI/CD</div>
+                <div class="tech-item">Linux</div>
+                <div class="tech-item">Ansible</div>
+            </div>
+                </div>
+
+        <!-- 5. Featured Project 1 -->
+        <div class="bento-card col-span-2 row-span-2">
+            <div style="margin-bottom: 1rem;">
+                <span class="role-badge">Featured Project</span>
+            </div>
+            <div style="margin-top: auto;">
+                <h3>Multi-Region AKS Cluster</h3>
+                <p class="text-sm" style="margin-bottom: 1rem;">High-availability Kubernetes architecture spanning 3 regions with automated failover.</p>
+                <div class="tech-grid" style="grid-template-columns: repeat(auto-fit, minmax(60px, 1fr)); gap: 0.5rem; margin-bottom: 1rem;">
+                    <span class="text-sm text-muted mono">#terraform</span>
+                    <span class="text-sm text-muted mono">#azure</span>
+                </div>
+                <a href="#" class="social-btn">View Case Study</a>
+            </div>
+        </div>
+
+        <!-- 6. Projects Link -->
+        <div class="bento-card col-span-1">
+            <h3>Projects</h3>
+            <p class="text-sm text-muted">My portfolio of technical projects and solutions.</p>
+            <a href="#projects" class="project-item nav-link" style="margin-top: auto;">
+                <span>Browse</span>
+                <svg class="arrow-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+        </div>
+
+        <!-- 7. Quote / Philosophy -->
+        <div class="bento-card col-span-1">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="var(--accent)" style="opacity: 0.2; margin-bottom: 1rem;"><path d="M10 11h-4a1 1 0 0 1 -1 -1v-3a1 1 0 0 1 1 -1h3a1 1 0 0 1 1 1v6c0 2.667 -1.333 4.333 -4 5"/></svg>
+            <p class="text-sm">"Simplicity is the prerequisite for reliability."</p>
+            <p class="text-sm text-muted mono" style="margin-top: 0.5rem;">- Edsger Dijkstra</p>
+        </div>
+
+        <!-- 8. More Projects -->
+        <div class="bento-card col-span-2">
+            <h3>Recent Work</h3>
+            <div class="project-list">
+                <a href="#" class="project-item">
+                    <div>
+                        <div style="font-weight: 500;">Serverless CI/CD</div>
+                        <div class="text-sm text-muted">Azure DevOps & Functions</div>
+                    </div>
+                    <svg class="arrow-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg>
+                </a>
+                <a href="#" class="project-item">
+                    <div>
+                        <div style="font-weight: 500;">AI Security Audit</div>
+                        <div class="text-sm text-muted">LLM Vulnerability Assessment</div>
+                    </div>
+                    <svg class="arrow-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg>
+                </a>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Projects Section (on same page) -->
+    <section id="projects" class="section-full">
+        <div class="main-container">
+            <div class="bento-card col-span-4">
+                <h1>Projects</h1>
+                <p class="text-muted">Insights, learnings, and best practices from my journey in cloud infrastructure engineering.</p>
+                </div>
+
+            <div class="bento-card col-span-4" style="padding: 0; background: transparent; border: none;">
+                <div class="kb-grid">
+                    <a href="#kb-azure-vms" class="kb-item" data-category="azure">
+                        <h3>Azure Virtual Machines & Scale Sets</h3>
+                        <p>Configuring Azure VMs and VM Scale Sets for high availability, auto-scaling, and cost optimization.</p>
+                        <span class="kb-read-more">Read More →</span>
+                    </a>
+                    <a href="#kb-azure-functions" class="kb-item" data-category="azure">
+                        <h3>Azure Functions & Serverless</h3>
+                        <p>Building serverless applications with Azure Functions, optimizing cold starts, and event-driven architectures.</p>
+                        <span class="kb-read-more">Read More →</span>
+                    </a>
+                    <a href="#kb-terraform-state" class="kb-item" data-category="terraform">
+                        <h3>Terraform State Management</h3>
+                        <p>Best practices for managing Terraform state files, remote backends, and state locking.</p>
+                        <span class="kb-read-more">Read More →</span>
+                    </a>
+                    <a href="#kb-cicd" class="kb-item" data-category="devops">
+                        <h3>CI/CD Pipeline Design</h3>
+                        <p>Building robust CI/CD pipelines with automated testing, security scanning, and rollback mechanisms.</p>
+                        <span class="kb-read-more">Read More →</span>
+                    </a>
+                    <a href="#kb-azure-rbac" class="kb-item" data-category="security">
+                        <h3>Azure RBAC & Access Control</h3>
+                        <p>Designing least-privilege Azure RBAC policies and implementing role-based access control.</p>
+                        <span class="kb-read-more">Read More →</span>
+                    </a>
+                    <a href="#kb-azure-openai" class="kb-item" data-category="ai">
+                        <h3>Azure OpenAI Service Integration</h3>
+                        <p>Deploying and managing Azure OpenAI Service instances and building AI-powered applications.</p>
+                        <span class="kb-read-more">Read More →</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer Section (Redesigned) -->
+    <footer id="contact" class="site-footer">
+        <div class="footer-container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <h3>Zakariya Mohamed</h3>
+                    <p class="footer-tagline">Cloud Infrastructure Engineer • Building scalable systems for the future</p>
+                </div>
+                
+                <div class="footer-links">
+                    <div class="footer-section">
+                        <h4>Connect</h4>
+                        <div class="footer-social">
+                            <a href="mailto:itszakariya0@gmail.com" class="footer-link" aria-label="Email">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                                    <polyline points="22,6 12,13 2,6"/>
+                                </svg>
+                                <span>Email</span>
+                            </a>
+                            <a href="https://www.linkedin.com/in/zak-m-293613161/" target="_blank" class="footer-link" aria-label="LinkedIn">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/>
+                                    <rect x="2" y="9" width="4" height="12"/>
+                                    <circle cx="4" cy="4" r="2"/>
+                                </svg>
+                                <span>LinkedIn</span>
+                            </a>
+                            <a href="https://github.com" target="_blank" class="footer-link" aria-label="GitHub">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/>
+                                </svg>
+                                <span>GitHub</span>
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div class="footer-section">
+                        <h4>Quick Links</h4>
+                        <nav class="footer-nav">
+                            <a href="#home" class="footer-link">Home</a>
+                            <a href="#projects" class="footer-link">Projects</a>
+                            <a href="assets/resume.pdf" class="footer-link" download>Resume</a>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p class="footer-copyright">
+                    &copy; 2024 Zakariya Mohamed. All rights reserved.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- 3D Flip Card AI Assistant -->
+    <div class="ai-assistant-container" id="aiAssistant" data-lenis-prevent>
+        <div class="flip-card">
+            <!-- FRONT SIDE -->
+            <div class="flip-card-front">
+                <button class="flip-card-front-close" aria-label="Close assistant">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M18 6L6 18M6 6l12 12"/>
+                    </svg>
+                </button>
+                <div class="assistant-avatar" id="animatedAvatar">
+                    <div class="avatar-face">
+                        <div class="avatar-head">
+                            <!-- Hair -->
+                            <div class="avatar-hair"></div>
+                            <!-- Face -->
+                            <div class="avatar-face-shape">
+                                <!-- Eyes -->
+                                <div class="avatar-eyes">
+                                    <div class="eye left-eye">
+                                        <div class="eyebrow left-eyebrow"></div>
+                                        <div class="eyeball">
+                                            <div class="iris">
+                                                <div class="pupil"></div>
+                                                <div class="eye-shine"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="eye right-eye">
+                                        <div class="eyebrow right-eyebrow"></div>
+                                        <div class="eyeball">
+                                            <div class="iris">
+                                                <div class="pupil"></div>
+                                                <div class="eye-shine"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Nose -->
+                                <div class="avatar-nose"></div>
+                                <!-- Mouth -->
+                                <div class="avatar-mouth">
+                                    <div class="mouth-shape"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <h3 class="assistant-title">Ask Zak</h3>
+                <p class="assistant-subtitle">Your personal assistant</p>
+                <div class="glow-effect"></div>
+            </div>
+
+            <!-- BACK SIDE (Chat Panel) -->
+            <div class="flip-card-back">
+                <div class="chat-header">
+                    <div class="chat-header-content">
+                        <div class="chat-avatar-small">
+                            <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <circle cx="50" cy="50" r="50" fill="url(#avatarGradientSmall)"/>
+                                <circle cx="50" cy="40" r="15" fill="white" opacity="0.9"/>
+                                <ellipse cx="50" cy="70" rx="20" ry="15" fill="white" opacity="0.9"/>
+                                <defs>
+                                    <linearGradient id="avatarGradientSmall" x1="0%" y1="0%" x2="100%" y2="100%">
+                                        <stop offset="0%" style="stop-color:#3B82F6;stop-opacity:1" />
+                                        <stop offset="100%" style="stop-color:#8B5CF6;stop-opacity:1" />
+                                    </linearGradient>
+                                </defs>
+                            </svg>
+                        </div>
+                        <div>
+                            <h4>Zak Assistant</h4>
+                            <p class="chat-status">Online</p>
+                        </div>
+                    </div>
+                    <div style="display: flex; gap: 0.5rem;">
+                        <button class="flip-back-btn" aria-label="Back to avatar">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M19 12H5M12 19l-7-7 7-7"/>
+                            </svg>
+                        </button>
+                        <button class="chat-close-btn" aria-label="Close chat">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M18 6L6 18M6 6l12 12"/>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="chat-messages" id="chatMessages">
+                    <div class="message assistant-message">
+                        <div class="message-content">
+                            <p>Hello! I'm Zak's AI assistant. How can I help you today?</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="typing-indicator" id="typingIndicator">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+
+                <div class="chat-input-container">
+                    <input 
+                        type="text" 
+                        id="chatInput" 
+                        class="chat-input" 
+                        placeholder="Type your message..."
+                        autocomplete="off"
+                    />
+                    <button class="send-btn" id="sendBtn" aria-label="Send message">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="assets/js/main.js"></script>
+    <script src="assets/js/theme-toggle.js"></script>
+    <script src="assets/js/ai-assistant.js"></script>
+    <script src="assets/js/animations.js"></script>
+</body>
+</html>

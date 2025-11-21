@@ -861,6 +861,138 @@ document.addEventListener('DOMContentLoaded', function() {
     statsObserver.observe(statsCard);
   }
 
+  // ============================================
+  // HERA-STYLE PREMIUM EFFECTS
+  // ============================================
+
+  // Scroll Progress Bar
+  function initScrollProgress() {
+    const progressBar = document.createElement('div');
+    progressBar.className = 'scroll-progress';
+    document.body.appendChild(progressBar);
+
+    function updateProgress() {
+      const scrollTop = window.pageYOffset;
+      const docHeight = document.body.scrollHeight - window.innerHeight;
+      const progress = (scrollTop / docHeight) * 100;
+      progressBar.style.width = progress + '%';
+    }
+
+    window.addEventListener('scroll', updateProgress, { passive: true });
+    updateProgress();
+  }
+
+  // Animated Gradient Orbs
+  function initGradientOrbs() {
+    const orbs = [
+      { class: 'gradient-orb gradient-orb-1' },
+      { class: 'gradient-orb gradient-orb-2' },
+      { class: 'gradient-orb gradient-orb-3' }
+    ];
+
+    orbs.forEach(orb => {
+      const element = document.createElement('div');
+      element.className = orb.class;
+      document.body.appendChild(element);
+    });
+
+    // Move orbs based on scroll
+    let scrollY = 0;
+    window.addEventListener('scroll', () => {
+      scrollY = window.pageYOffset;
+      const orb1 = document.querySelector('.gradient-orb-1');
+      const orb2 = document.querySelector('.gradient-orb-2');
+      const orb3 = document.querySelector('.gradient-orb-3');
+
+      if (orb1) orb1.style.transform = `translate(${scrollY * 0.02}px, ${scrollY * 0.05}px)`;
+      if (orb2) orb2.style.transform = `translate(${-scrollY * 0.03}px, ${scrollY * 0.02}px)`;
+      if (orb3) orb3.style.transform = `translate(${scrollY * 0.01}px, ${-scrollY * 0.03}px)`;
+    }, { passive: true });
+  }
+
+  // Floating Parallax Shapes
+  function initParallaxShapes() {
+    const shapes = [
+      { class: 'parallax-shape parallax-shape-1', speed: 0.3 },
+      { class: 'parallax-shape parallax-shape-2', speed: 0.5 },
+      { class: 'parallax-shape parallax-shape-3', speed: 0.2 },
+      { class: 'parallax-shape parallax-shape-4', speed: 0.4 }
+    ];
+
+    shapes.forEach(shape => {
+      const element = document.createElement('div');
+      element.className = shape.class;
+      element.setAttribute('data-speed', shape.speed);
+      document.body.appendChild(element);
+    });
+
+    // Parallax movement
+    window.addEventListener('scroll', () => {
+      const scrollY = window.pageYOffset;
+      document.querySelectorAll('.parallax-shape').forEach(shape => {
+        const speed = parseFloat(shape.getAttribute('data-speed')) || 0.3;
+        const yPos = scrollY * speed;
+        const rotation = scrollY * speed * 0.5;
+        shape.style.transform = `translateY(${yPos}px) rotate(${rotation}deg)`;
+      });
+    }, { passive: true });
+  }
+
+  // Text Scramble Effect
+  function initTextScramble() {
+    const scrambleElements = document.querySelectorAll('[data-scramble]');
+
+    scrambleElements.forEach(element => {
+      const originalText = element.textContent;
+      const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*';
+
+      const scrambleObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            let iteration = 0;
+            const interval = setInterval(() => {
+              element.textContent = originalText
+                .split('')
+                .map((char, index) => {
+                  if (index < iteration) return originalText[index];
+                  if (char === ' ') return ' ';
+                  return chars[Math.floor(Math.random() * chars.length)];
+                })
+                .join('');
+
+              if (iteration >= originalText.length) {
+                clearInterval(interval);
+              }
+              iteration += 1/3;
+            }, 30);
+
+            scrambleObserver.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.5 });
+
+      scrambleObserver.observe(element);
+    });
+  }
+
+  // Smooth Reveal Animations
+  function initRevealAnimations() {
+    const revealElements = document.querySelectorAll('.reveal-up, .reveal-scale, .reveal-left, .reveal-right');
+
+    if (revealElements.length === 0) return;
+
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15, rootMargin: '-50px' });
+
+    revealElements.forEach(el => revealObserver.observe(el));
+  }
+
   // Initialize all motion graphics
   function initMotionGraphics() {
     // Delay to ensure DOM is ready
@@ -875,6 +1007,12 @@ document.addEventListener('DOMContentLoaded', function() {
       initStaggeredEntrance();
       initMagneticButtons();
       initScrollTransforms();
+      // Premium Hera-style effects
+      initScrollProgress();
+      initGradientOrbs();
+      initParallaxShapes();
+      initTextScramble();
+      initRevealAnimations();
     }, 100);
   }
 

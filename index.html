@@ -65,9 +65,31 @@
             </div>
         </div>
 
-        <!-- 2. Location / Time -->
+        <!-- 2. Stats Card - Animated Counters -->
+        <div class="bento-card col-span-2 stats-card">
+            <h3 class="gradient-text-animate">Impact & Results</h3>
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <span class="stat-number" data-counter="8" data-suffix="+">0</span>
+                    <span class="stat-label">Years Experience</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number" data-counter="20" data-suffix="+">0</span>
+                    <span class="stat-label">Projects Delivered</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number" data-counter="40" data-suffix="%">0</span>
+                    <span class="stat-label">Time Saved</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number" data-counter="1410" data-prefix="£">0</span>
+                    <span class="stat-label">Annual Savings</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- 3. Location / Time -->
         <div class="bento-card card-location">
-            <!-- Placeholder gradient instead of map for now -->
             <div style="position: absolute; inset:0; background: radial-gradient(circle at center, #262626 0%, #171717 100%); opacity: 0.5;"></div>
             <div class="location-overlay">
                 <h3>Based in UK</h3>
@@ -75,11 +97,11 @@
             </div>
         </div>
 
-        <!-- 3. Socials (Small) -->
+        <!-- 4. Socials -->
         <div class="bento-card">
             <h3>Connect</h3>
             <div style="display: flex; flex-direction: column; gap: 0.5rem; margin-top: auto;">
-                <a href="https://linkedin.com" target="_blank" class="project-item">
+                <a href="https://www.linkedin.com/in/zak-m-293613161/" target="_blank" class="project-item">
                     <span>LinkedIn</span>
                     <svg class="arrow-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg>
                 </a>
@@ -88,22 +110,103 @@
                     <svg class="arrow-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg>
                 </a>
             </div>
-                </div>
+        </div>
 
-        <!-- 4. Tech Stack (Wide) -->
-        <div class="bento-card col-span-2">
-            <h3>Core Stack</h3>
-            <div class="tech-grid">
-                <div class="tech-item">Azure</div>
-                <div class="tech-item">Kubernetes</div>
-                <div class="tech-item">Terraform</div>
-                <div class="tech-item">Docker</div>
-                <div class="tech-item">Python</div>
-                <div class="tech-item">CI/CD</div>
-                <div class="tech-item">Linux</div>
-                <div class="tech-item">Ansible</div>
-            </div>
+        <!-- 5. Skills with Animated Bars -->
+        <div class="bento-card col-span-2 row-span-2 skills-card">
+            <h3>Technical Expertise</h3>
+            <div class="skills-container">
+                <div class="skill-item">
+                    <div class="skill-header">
+                        <span class="skill-name">Azure / Microsoft 365</span>
+                        <span class="skill-percent">95%</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-fill" data-width="95"></div>
+                    </div>
                 </div>
+                <div class="skill-item">
+                    <div class="skill-header">
+                        <span class="skill-name">Terraform / IaC</span>
+                        <span class="skill-percent">90%</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-fill" data-width="90"></div>
+                    </div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-header">
+                        <span class="skill-name">Python / PowerShell</span>
+                        <span class="skill-percent">85%</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-fill" data-width="85"></div>
+                    </div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-header">
+                        <span class="skill-name">Kubernetes / Docker</span>
+                        <span class="skill-percent">80%</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-fill" data-width="80"></div>
+                    </div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-header">
+                        <span class="skill-name">Networking / Security</span>
+                        <span class="skill-percent">90%</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-fill" data-width="90"></div>
+                    </div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-header">
+                        <span class="skill-name">AWS</span>
+                        <span class="skill-percent">75%</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-fill" data-width="75"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 6. Certifications -->
+        <div class="bento-card col-span-2 certifications-card">
+            <h3>Certifications</h3>
+            <div class="cert-grid">
+                <div class="cert-item" data-cert="azure">
+                    <div class="cert-icon">
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M13.05 4.24L6.56 18.05a.5.5 0 00.46.7h5.07a.5.5 0 00.46-.3l1.41-3.38a.5.5 0 01.46-.3h3.93a.5.5 0 00.42-.77L13.5 4.24a.5.5 0 00-.45-.24z"/></svg>
+                    </div>
+                    <span class="cert-name">Azure Admin</span>
+                    <span class="cert-code">AZ-104</span>
+                </div>
+                <div class="cert-item" data-cert="vmware">
+                    <div class="cert-icon">
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+                    </div>
+                    <span class="cert-name">VMware</span>
+                    <span class="cert-code">VTA</span>
+                </div>
+                <div class="cert-item" data-cert="cisco">
+                    <div class="cert-icon">
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+                    </div>
+                    <span class="cert-name">CCNA</span>
+                    <span class="cert-code">R&S</span>
+                </div>
+                <div class="cert-item" data-cert="isc2">
+                    <div class="cert-icon">
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm0 10.99h7c-.53 4.12-3.28 7.79-7 8.94V12H5V6.3l7-3.11v8.8z"/></svg>
+                    </div>
+                    <span class="cert-name">ISC2</span>
+                    <span class="cert-code">Cyber</span>
+                </div>
+            </div>
+        </div>
 
         <!-- 5. Featured Project 1 -->
         <div class="bento-card col-span-2 row-span-2">

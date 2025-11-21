@@ -749,12 +749,67 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   }
 
+  // Animated Skill Bars
+  function initSkillBars() {
+    const skillFills = document.querySelectorAll('.skill-fill');
+
+    const skillObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const fill = entry.target;
+          const width = fill.getAttribute('data-width');
+          setTimeout(() => {
+            fill.style.width = width + '%';
+          }, 200);
+          skillObserver.unobserve(fill);
+        }
+      });
+    }, { threshold: 0.5 });
+
+    skillFills.forEach(fill => skillObserver.observe(fill));
+  }
+
+  // Animate certification badges on hover
+  function initCertAnimations() {
+    const certItems = document.querySelectorAll('.cert-item');
+
+    certItems.forEach((item, index) => {
+      item.style.opacity = '0';
+      item.style.transform = 'translateY(20px)';
+
+      setTimeout(() => {
+        item.style.transition = 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)';
+        item.style.opacity = '1';
+        item.style.transform = 'translateY(0)';
+      }, 1200 + (index * 150));
+    });
+  }
+
+  // Stats number animation enhancement
+  function initStatsAnimation() {
+    const statItems = document.querySelectorAll('.stat-item');
+
+    statItems.forEach((item, index) => {
+      item.style.opacity = '0';
+      item.style.transform = 'scale(0.8)';
+
+      setTimeout(() => {
+        item.style.transition = 'all 0.5s cubic-bezier(0.4, 0, 0.2, 1)';
+        item.style.opacity = '1';
+        item.style.transform = 'scale(1)';
+      }, 800 + (index * 100));
+    });
+  }
+
   // Initialize all motion graphics
   function initMotionGraphics() {
     // Delay to ensure DOM is ready
     setTimeout(() => {
       initHeroAnimation();
       initTechStackAnimation();
+      initSkillBars();
+      initCertAnimations();
+      initStatsAnimation();
       animateCounters();
       initPageTransitions();
       initParallax();

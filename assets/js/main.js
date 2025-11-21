@@ -107,7 +107,7 @@ document.addEventListener('DOMContentLoaded', function() {
     updateActiveNav();
 });
 
-// Custom Cursor (Desktop Only)
+// Custom Cursor (Desktop Only) - Enhanced with animations
 if (window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
     document.addEventListener('DOMContentLoaded', function() {
         const cursor = document.createElement('div');
@@ -124,18 +124,61 @@ if (window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
         let cursorY = 0;
         let dotX = 0;
         let dotY = 0;
+        let isHovering = false;
+        let currentMagneticElement = null;
 
         document.addEventListener('mousemove', (e) => {
             mouseX = e.clientX;
             mouseY = e.clientY;
+
+            // Check for text elements under cursor
+            const elementUnderCursor = document.elementFromPoint(e.clientX, e.clientY);
+            if (elementUnderCursor) {
+                const computedStyle = window.getComputedStyle(elementUnderCursor);
+                const isTextElement = elementUnderCursor.matches('p, span, h1, h2, h3, h4, h5, h6, label, .text-content') ||
+                    (elementUnderCursor.childNodes.length === 1 &&
+                     elementUnderCursor.childNodes[0].nodeType === Node.TEXT_NODE &&
+                     elementUnderCursor.childNodes[0].textContent.trim().length > 0);
+
+                if (isTextElement && !isHovering) {
+                    cursor.classList.add('text');
+                    cursorDot.classList.add('text');
+                } else if (!isHovering) {
+                    cursor.classList.remove('text');
+                    cursorDot.classList.remove('text');
+                }
+            }
         });
 
-        // Smooth cursor animation
+        // Smooth cursor animation with magnetic effect
         function animateCursor() {
-            cursorX += (mouseX - cursorX) * 0.1;
-            cursorY += (mouseY - cursorY) * 0.1;
-            dotX += (mouseX - dotX) * 0.3;
-            dotY += (mouseY - dotY) * 0.3;
+            let targetX = mouseX;
+            let targetY = mouseY;
+
+            // Magnetic effect - snap to center of hovered element
+            if (currentMagneticElement && isHovering) {
+                const rect = currentMagneticElement.getBoundingClientRect();
+                const centerX = rect.left + rect.width / 2;
+                const centerY = rect.top + rect.height / 2;
+
+                // Calculate distance to center
+                const distX = mouseX - centerX;
+                const distY = mouseY - centerY;
+                const distance = Math.sqrt(distX * distX + distY * distY);
+
+                // Magnetic pull strength (closer = stronger pull)
+                const maxDistance = Math.max(rect.width, rect.height) / 2;
+                const magnetStrength = Math.max(0, 1 - (distance / maxDistance)) * 0.3;
+
+                targetX = mouseX - (distX * magnetStrength);
+                targetY = mouseY - (distY * magnetStrength);
+            }
+
+            // Smooth interpolation
+            cursorX += (targetX - cursorX) * 0.15;
+            cursorY += (targetY - cursorY) * 0.15;
+            dotX += (targetX - dotX) * 0.35;
+            dotY += (targetY - dotY) * 0.35;
 
             cursor.style.left = cursorX + 'px';
             cursor.style.top = cursorY + 'px';
@@ -146,16 +189,52 @@ if (window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
         }
         animateCursor();
 
-        // Hover effects
-        const interactiveElements = document.querySelectorAll('a, button, .bento-card, .kb-item, .project-item, .social-btn, .submit-btn, .filter-btn');
-        
+        // Click animation
+        document.addEventListener('mousedown', () => {
+            cursor.classList.add('clicking');
+            cursorDot.classList.add('clicking');
+        });
+
+        document.addEventListener('mouseup', () => {
+            cursor.classList.remove('clicking');
+            cursorDot.classList.remove('clicking');
+        });
+
+        // Hover effects with magnetic detection
+        const interactiveElements = document.querySelectorAll('a, button, .bento-card, .kb-item, .project-item, .social-btn, .submit-btn, .filter-btn, .tech-item, .nav-link, .theme-toggle, input, textarea');
+
         interactiveElements.forEach(el => {
-            el.addEventListener('mouseenter', () => {
+            el.addEventListener('mouseenter', (e) => {
                 cursor.classList.add('hover');
+                cursorDot.classList.add('hover');
+                cursor.classList.remove('text');
+                cursorDot.classList.remove('text');
+                isHovering = true;
+                currentMagneticElement = el;
+
+                // Add magnetic class for smooth snapping
+                if (el.matches('button, .social-btn, .submit-btn, .filter-btn, .theme-toggle')) {
+                    cursor.classList.add('magnetic');
+                }
             });
+
             el.addEventListener('mouseleave', () => {
-                cursor.classList.remove('hover');
+                cursor.classList.remove('hover', 'magnetic');
+                cursorDot.classList.remove('hover');
+                isHovering = false;
+                currentMagneticElement = null;
             });
+        });
+
+        // Hide cursor when leaving window
+        document.addEventListener('mouseleave', () => {
+            cursor.classList.add('hidden');
+            cursorDot.classList.add('hidden');
+        });
+
+        document.addEventListener('mouseenter', () => {
+            cursor.classList.remove('hidden');
+            cursorDot.classList.remove('hidden');
         });
     });
 }

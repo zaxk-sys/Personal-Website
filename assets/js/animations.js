@@ -753,6 +753,8 @@ document.addEventListener('DOMContentLoaded', function() {
   function initSkillBars() {
     const skillFills = document.querySelectorAll('.skill-fill');
 
+    if (skillFills.length === 0) return;
+
     const skillObserver = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
@@ -760,45 +762,103 @@ document.addEventListener('DOMContentLoaded', function() {
           const width = fill.getAttribute('data-width');
           setTimeout(() => {
             fill.style.width = width + '%';
-          }, 200);
+          }, 300);
           skillObserver.unobserve(fill);
         }
       });
-    }, { threshold: 0.5 });
+    }, { threshold: 0.1, rootMargin: '0px' });
 
     skillFills.forEach(fill => skillObserver.observe(fill));
   }
 
-  // Animate certification badges on hover
+  // Animate certification badges
   function initCertAnimations() {
     const certItems = document.querySelectorAll('.cert-item');
+
+    if (certItems.length === 0) return;
 
     certItems.forEach((item, index) => {
       item.style.opacity = '0';
       item.style.transform = 'translateY(20px)';
-
-      setTimeout(() => {
-        item.style.transition = 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)';
-        item.style.opacity = '1';
-        item.style.transform = 'translateY(0)';
-      }, 1200 + (index * 150));
     });
+
+    const certObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const items = entry.target.querySelectorAll('.cert-item');
+          items.forEach((item, index) => {
+            setTimeout(() => {
+              item.style.transition = 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)';
+              item.style.opacity = '1';
+              item.style.transform = 'translateY(0)';
+            }, index * 100);
+          });
+          certObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.2 });
+
+    const certCard = document.querySelector('.certifications-card');
+    if (certCard) certObserver.observe(certCard);
   }
 
-  // Stats number animation enhancement
+  // Stats animation with counters
   function initStatsAnimation() {
+    const statsCard = document.querySelector('.stats-card');
     const statItems = document.querySelectorAll('.stat-item');
 
-    statItems.forEach((item, index) => {
+    if (!statsCard || statItems.length === 0) return;
+
+    // Set initial state
+    statItems.forEach(item => {
       item.style.opacity = '0';
       item.style.transform = 'scale(0.8)';
-
-      setTimeout(() => {
-        item.style.transition = 'all 0.5s cubic-bezier(0.4, 0, 0.2, 1)';
-        item.style.opacity = '1';
-        item.style.transform = 'scale(1)';
-      }, 800 + (index * 100));
     });
+
+    const statsObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          // Animate stat items
+          statItems.forEach((item, index) => {
+            setTimeout(() => {
+              item.style.transition = 'all 0.5s cubic-bezier(0.4, 0, 0.2, 1)';
+              item.style.opacity = '1';
+              item.style.transform = 'scale(1)';
+            }, index * 100);
+          });
+
+          // Start counter animations after items are visible
+          setTimeout(() => {
+            const counters = statsCard.querySelectorAll('[data-counter]');
+            counters.forEach(counter => {
+              const target = parseInt(counter.getAttribute('data-counter'));
+              const duration = parseInt(counter.getAttribute('data-duration')) || 2000;
+              const suffix = counter.getAttribute('data-suffix') || '';
+              const prefix = counter.getAttribute('data-prefix') || '';
+
+              let start = 0;
+              const increment = target / (duration / 16);
+
+              const updateCounter = () => {
+                start += increment;
+                if (start < target) {
+                  counter.textContent = prefix + Math.floor(start) + suffix;
+                  requestAnimationFrame(updateCounter);
+                } else {
+                  counter.textContent = prefix + target + suffix;
+                }
+              };
+
+              updateCounter();
+            });
+          }, 400);
+
+          statsObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.3 });
+
+    statsObserver.observe(statsCard);
   }
 
   // Initialize all motion graphics
@@ -810,7 +870,6 @@ document.addEventListener('DOMContentLoaded', function() {
       initSkillBars();
       initCertAnimations();
       initStatsAnimation();
-      animateCounters();
       initPageTransitions();
       initParallax();
       initStaggeredEntrance();
